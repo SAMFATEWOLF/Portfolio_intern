@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
+"math"
 )
 
 // Given a signed 32-bit integer x, return x with its digits reversed.
@@ -29,9 +30,9 @@ func reverse(x int) int {
 	if err != nil {
 		panic(err)
 	}
-	if res > 2147483647 {
+	if res > math.MaxInt32 {
 		return 0
-	} else if res <= -2147483648 {
+	} else if res <= math.MinInt32 {
 		return 0
 	}
 	return res
