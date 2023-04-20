@@ -58,13 +58,49 @@ func main() {
 		}
 	}
 	resStr := fmt.Sprint(daysAmmount)
-
-	switch resStr[len(resStr)-1:] {
-	case "1":
-		fmt.Printf("Между выбранными датами %v рабочий день", daysAmmount)
-	case "2", "3", "4":
-		fmt.Printf("Между выбранными датами %v рабочих дня", daysAmmount)
-	default:
-		fmt.Printf("Между выбранными датами %v рабочих дней", daysAmmount)
+	var ex string
+	if len(resStr) == 1 {
+		switch resStr {
+		case "1":
+			ex = "рабочий день"
+		case "2", "3", "4":
+			ex = "рабочих дня"
+		default:
+			ex = "рабочих дней"
+		}
 	}
+	if len(resStr) == 2 {
+		switch resStr[0] {
+		case '1':
+			ex = "рабочих дней"
+		default:
+			switch resStr[1] {
+			case '1':
+				ex = "рабочий день"
+			case '2', '3', '4':
+				ex = "рабочих дня"
+			default:
+				ex = "рабочих дней"
+
+			}
+		}
+
+	}
+	if len(resStr) == 3 {
+		switch resStr[1] {
+		case '1':
+			ex = "рабочих дней"
+		default:
+			switch resStr[2] {
+			case '1':
+				ex = "рабочий день"
+			case '2', '3', '4':
+				ex = "рабочих дня"
+			default:
+				ex = "рабочих дней"
+
+			}
+		}
+	}
+	fmt.Printf("Между выбранными датами %v %v.", daysAmmount, ex)
 }
